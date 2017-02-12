@@ -1,0 +1,12 @@
+/**
+ * Created by jason on 2017/2/12.
+ */
+import axios from 'axios'
+
+export default axios.create({
+  baseURL: 'https://api.openload.co/1',
+  // timeout: 1000,
+  headers: {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+  }
+});
