@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 var _commander = require('commander');
@@ -20,13 +21,21 @@ var _os = require('os');
 
 var _os2 = _interopRequireDefault(_os);
 
-var _request = require('./request');
+var _axios = require('axios');
 
-var _request2 = _interopRequireDefault(_request);
+var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var exec = require('child_process').exec;
+
+var req = _axios2.default.create({
+  baseURL: 'https://api.openload.co/1',
+  // timeout: 1000,
+  headers: {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+  }
+});
 
 var configPath = _path2.default.resolve(_os2.default.homedir(), '.openload.json');
 
@@ -35,7 +44,7 @@ var _ref = _fs2.default.existsSync(configPath) && _jsonfile2.default.readFileSyn
     key = _ref.key;
 
 function verify(login, key) {
-  return _request2.default.get('/account/info?login=' + login + '&key=' + key).then(function (res) {
+  return req.get('/account/info?login=' + login + '&key=' + key).then(function (res) {
     return res.data.status === 200;
   });
 }
@@ -83,10 +92,10 @@ _commander2.default.command('link <url>').description('get download link').actio
     return;
   }
   var file = /(embed|f)\/(.*)\//.exec(url)[2];
-  _request2.default.get('/file/dlticket?file=' + file + '&login=' + login + '&key=' + key).then(function (res) {
+  req.get('/file/dlticket?file=' + file + '&login=' + login + '&key=' + key).then(function (res) {
     if (res.data.status === 200) return res.data.result.ticket;else throw new Error(res.data.msg);
   }).then(function (ticket) {
-    return _request2.default.get('/file/dl?file=' + file + '&ticket=' + ticket);
+    return req.get('/file/dl?file=' + file + '&ticket=' + ticket);
   }).then(function (res) {
     if (res.data.status === 200) return res.data.result.url;else throw new Error(res.data.msg);
   }).then(function (url) {

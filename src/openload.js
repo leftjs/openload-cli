@@ -1,11 +1,19 @@
+#!/usr/bin/env node
 import program from 'commander'
 import jsonfile from 'jsonfile'
 import path from 'path'
 import fs from 'fs'
 import os from 'os'
-import req from './request'
+import axios from 'axios'
 const exec = require('child_process').exec
 
+const req = axios.create({
+  baseURL: 'https://api.openload.co/1',
+  // timeout: 1000,
+  headers: {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+  }
+});
 
 const configPath = path.resolve(os.homedir(), '.openload.json')
 const {login, key} = fs.existsSync(configPath) && jsonfile.readFileSync(configPath, {throws: false})
