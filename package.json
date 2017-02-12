@@ -31,8 +31,7 @@
     "clean": "rimraf ./bin && mkdir ./bin",
     "build": "cross-env NODE_ENV=production babel src/openload.js --out-file ./bin/openload",
     "dist": "npm run clean && npm run build",
-    "start:dist": "./bin/openload",
-    "pub": "npm run dist && git add . && git commit -m \"update\" && git push origin master && npm version update && npm publish"
+    "start:dist": "./bin/openload"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
