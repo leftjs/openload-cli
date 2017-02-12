@@ -72,11 +72,7 @@ _commander2.default.version('0.0.1').command('config').description('config auth 
       }
     });
   } else if (process.argv.length === 3) {
-    exec(process.argv.map(function (item) {
-      if (process.env.NODE_ENV !== 'production' && item == 'node') {
-        return 'babel-node';
-      } else return item;
-    }).join(' ') + ' -h', function (err, stdout, stderr) {
+    exec(process.argv.join(' ') + ' -h', function (err, stdout, stderr) {
       if (err) throw err;
       console.log(stdout);
     });
@@ -86,7 +82,6 @@ _commander2.default.version('0.0.1').command('config').description('config auth 
 });
 
 _commander2.default.command('link <url>').description('get download link').action(function (url) {
-  url = 'https://openload.co/f/-afTchZO5Uk/?wmode=transparent';
   if (!login || !key) {
     console.log('please input your auth info by config sub command firstly');
     return;

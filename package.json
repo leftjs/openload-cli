@@ -29,7 +29,7 @@
     "start": "babel-node ./src/openload.js",
     "dev": "nodemon --watch src/ --exec npm run start --",
     "clean": "rimraf ./bin && mkdir ./bin",
-    "build": "babel src/openload.js --out-file ./bin/openload",
+    "build": "cross-env NODE_ENV=production babel src/openload.js --out-file ./bin/openload",
     "dist": "npm run clean && npm run build",
     "start:dist": "./bin/openload"
   },

@@ -49,12 +49,7 @@ program
         }
       })
     } else if (process.argv.length === 3) {
-      exec(`${process.argv.map(item => {
-        if (process.env.NODE_ENV !== 'production' && item == 'node') {
-          return 'babel-node'
-        }else return item
-        
-      }).join(' ')} -h`, (err, stdout, stderr) => {
+      exec(`${process.argv.join(' ')} -h`, (err, stdout, stderr) => {
         if (err) throw err
         console.log(stdout)
       })
@@ -67,7 +62,6 @@ program
   .command('link <url>')
   .description('get download link')
   .action(function(url) {
-    url = 'https://openload.co/f/-afTchZO5Uk/?wmode=transparent'
     if (!login || !key) {
       console.log('please input your auth info by config sub command firstly')
       return
