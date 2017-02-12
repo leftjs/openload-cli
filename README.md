@@ -10,3 +10,13 @@ npm install -g openload-cli
 ```bash
 yarn global add openload-cli
 ```
+
+## use
+```bash
+openload config --login [your_login] --key [your_key] 
+```
+then, you can use link sub command to get the download link from openload's url
+such as https://openload.co/embed/-afTchZO5Uk/?wmode=transparent
+```bash
+openload link [openload's url]
+```
