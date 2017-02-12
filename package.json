@@ -1,6 +1,6 @@
 {
   "name": "openload-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -12,7 +12,10 @@
     "commander": "^2.9.0",
     "jsonfile": "^2.4.0"
   },
-  "keywords": ["openload", "cli"],
+  "keywords": [
+    "openload",
+    "cli"
+  ],
   "authors": [
     "leftjs <leftjs@foxmail.com> (https://github.com/leftjs)"
   ],
