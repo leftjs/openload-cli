@@ -12,6 +12,9 @@
     "commander": "^2.9.0",
     "jsonfile": "^2.4.0"
   },
+  "bin": {
+    "openload": "./bin/openload"
+  },
   "keywords": [
     "openload",
     "cli"
