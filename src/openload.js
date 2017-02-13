@@ -22,6 +22,7 @@ function verify(login, key) {
   return req.get(`/account/info?login=${login}&key=${key}`).then(res => (res.data.status === 200))
 }
 
+// config sub command, config auth login & key
 program
   .version('0.0.1')
   .command('config')
@@ -29,8 +30,6 @@ program
   .option("-l, --login [login]", "openload api for auth")
   .option("-k, --key [key]", "openload key for auth")
   .action(function({login, key}) {
-
-
     if (login && key) {
       verify(login, key).then(result => {
         if (result) {
@@ -58,6 +57,7 @@ program
     }
   })
 
+// link sub command, to get the download link from openload's link
 program
   .command('link <url>')
   .description('get download link')

@@ -49,10 +49,10 @@ function verify(login, key) {
   });
 }
 
+// config sub command, config auth login & key
 _commander2.default.version('0.0.1').command('config').description('config auth info').option("-l, --login [login]", "openload api for auth").option("-k, --key [key]", "openload key for auth").action(function (_ref2) {
   var login = _ref2.login,
       key = _ref2.key;
-
 
   if (login && key) {
     verify(login, key).then(function (result) {
@@ -81,6 +81,7 @@ _commander2.default.version('0.0.1').command('config').description('config auth 
   }
 });
 
+// link sub command, to get the download link from openload's link
 _commander2.default.command('link <url>').description('get download link').action(function (url) {
   if (!login || !key) {
     console.log('please input your auth info by config sub command firstly');
